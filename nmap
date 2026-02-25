@@ -2,7 +2,7 @@
 Nixpkgs: nixpkgs.nmap
 Source: https://github.com/nmap/nmap
 Description: Network exploration tool and security / port scanner.
-Version: nmap --version
+Version: 7.98
 
 ## Commands
 
@@ -40,7 +40,7 @@ Version: nmap --version
 Nixpkgs: nixpkgs.nmap
 Source: https://github.com/nmap/nmap
 Descrição: Ferramenta de exploração de rede e scanner de portas de segurança.
-Versão: nmap --version
+Versão: 7.98
 
 ## Comandos
 

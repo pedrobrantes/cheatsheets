@@ -2,7 +2,7 @@
 Nixpkgs: attribute_path
 Source: repository_url_or_proprietary
 Description: short_technical_description
-Version: check_command_example
+Version: static_base_version_number
 
 ## Commands
 
@@ -35,7 +35,7 @@ Version: check_command_example
 Nixpkgs: attribute_path
 Source: repository_url_or_proprietary
 Descrição: descrição_técnica_curta
-Versão: exemplo_de_comando_de_versão
+Versão: numero_da_versão_estática
 
 ## Comandos
 

@@ -2,7 +2,7 @@
 Nixpkgs: nixpkgs.nix
 Source: https://github.com/NixOS/nix
 Description: Manage Nix flakes (lock files, metadata, registry).
-Version: nix --version
+Version: 2.33.3
 
 ## Commands
 
@@ -38,7 +38,7 @@ Version: nix --version
 Nixpkgs: nixpkgs.nix
 Source: https://github.com/NixOS/nix
 Descrição: Gerencia Nix Flakes (arquivos lock, metadados, registro).
-Versão: nix --version
+Versão: 2.33.3
 
 ## Comandos
 

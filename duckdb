@@ -2,7 +2,7 @@
 Nixpkgs: nixpkgs.duckdb
 Source: https://github.com/duckdb/duckdb
 Description: In-process SQL OLAP database management system.
-Version: duckdb --version
+Version: 1.4.4
 
 ## Commands
 
@@ -38,7 +38,7 @@ Version: duckdb --version
 Nixpkgs: nixpkgs.duckdb
 Source: https://github.com/duckdb/duckdb
 Descrição: Sistema de gerenciamento de banco de dados SQL analítico (OLAP).
-Versão: duckdb --version
+Versão: 1.4.4
 
 ## Comandos
 

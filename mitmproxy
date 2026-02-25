@@ -2,7 +2,7 @@
 Nixpkgs: nixpkgs.mitmproxy
 Source: https://github.com/mitmproxy/mitmproxy
 Description: Interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers.
-Version: mitmproxy --version
+Version: 12.2.1
 
 ## Commands
 
@@ -39,7 +39,7 @@ Version: mitmproxy --version
 Nixpkgs: nixpkgs.mitmproxy
 Source: https://github.com/mitmproxy/mitmproxy
 Descrição: Proxy HTTP interativo capaz de interceptar tráfego TLS para testes de penetração e desenvolvimento.
-Versão: mitmproxy --version
+Versão: 12.2.1
 
 ## Comandos
 
