@@ -1,0 +1,5 @@
+# Audit password hash via GPU (SHA-512)
+hashcat -m 1800 hash.txt wordlist.txt -r rules/best64.rule
+
+# Personalized Wordlist Profiler (CUPP)
+cupp -i

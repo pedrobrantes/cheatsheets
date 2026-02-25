@@ -1,0 +1,5 @@
+# Query remote Parquet columns only (DuckDB)
+duckdb -c "SELECT col1 FROM 's3://bucket/data.parquet' LIMIT 10"
+
+# Multi-connection concurrent download (chunks)
+aria2c -x 16 -s 16 <url>

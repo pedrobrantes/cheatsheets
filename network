@@ -1,0 +1,8 @@
+# Scan local network for active hosts
+nmap -sn 192.168.1.0/24
+
+# List devices in LAN via ARP (requires root)
+arp-scan --localnet
+
+# Interactive traceroute
+mtr google.com
