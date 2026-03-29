@@ -1,0 +1,183 @@
+# To remember commands
+
+## List Commands in Common Directories
+ls /usr/bin
+ls /bin /sbin /usr/sbin
+
+## List All Available Commands
+compgen -c
+
+## List Installed Packages (Debian/Ubuntu)
+dpkg --get-selections
+
+## Search for Keywords in Man Pages
+man -k <keyword>
+
+## List Command Descriptions
+man -k . | less
+
+## Search for Keywords with `apropos`
+apropos <keyword>
+apropos .
+
+## Check the Type of a Command
+type <command>
+
+## List Functions Defined in `bash`
+declare -f
+
+## Find Executable Files
+find /usr/bin -type f -executable
+
+## Check the Location of Commands
+command -v <command>
+
+## Example Search with `whatis`
+whatis <command>
+
+## List a summarize with common use
+tldr <command> [<subcommand>]
+
+## View a cheatsheet
+cheat <command>
+
+## List Files in `/usr/local/bin`
+ls /usr/local/bin
+
+## List Commands with `which`
+which <command>
+
+## List All Shell Built-in Commands
+help
+
+## Find Commands with Specific Extensions
+find /usr/bin -name "*.sh"
+
+## List All Available Shells
+cat /etc/shells
+
+## List All Installed Software (RPM-based Systems)
+rpm -qa
+
+## List All Installed Packages (Debian/Ubuntu)
+dpkg -l
+
+## Search for a Package by Name (Debian/Ubuntu)
+apt search <package-name>
+
+## Show Package Information (Debian/Ubuntu)
+apt show <package-name>
+
+## List All Installed Packages (RPM-based Systems)
+rpm -qa
+
+## Search for a Package by Name (RPM-based Systems)
+yum search <package-name>
+
+## Show Package Information (RPM-based Systems)
+yum info <package-name>
+
+## List All Installed Packages (Arch Linux)
+pacman -Q
+
+## Search for a Package by Name (Arch Linux)
+pacman -Ss <package-name>
+
+## Show Package Information (Arch Linux)
+pacman -Qi <package-name>
+
+## List Packages Installed via Snap
+snap list
+
+## List Packages Installed via Flatpak
+flatpak list
+
+## Search for Utilities Installed via Homebrew (macOS/Linux)
+brew list
+
+## Search for a Package by Name (Homebrew)
+brew search <package-name>
+
+# Searching for Utilities Installed by Language-Specific Package Managers
+
+## Python (pip)
+
+### List Installed Packages
+pip list
+
+### Search for a Package
+pip search <package-name>
+
+### Show Package Information
+pip show <package-name>
+
+## Node.js (npm)
+
+### List Installed Packages
+npm list -g --depth=0
+
+### Search for a Package
+npm search <package-name>
+
+### Show Package Information
+npm info <package-name>
+
+## Ruby (gem)
+
+### List Installed Gems
+gem list
+
+### Search for a Gem
+gem search <gem-name>
+
+### Show Gem Information
+gem specification <gem-name>
+
+## PHP (Composer)
+
+### List Installed Packages
+composer show
+
+### Search for a Package
+composer search <package-name>
+
+### Show Package Information
+composer show <package-name>
+
+## Rust (Cargo)
+
+### List Installed Packages
+cargo install --list
+
+### Search for a Package
+cargo search <package-name>
+
+### Show Package Information
+cargo metadata --format-version 1
+
+## Go (Go Modules)
+
+### List Installed Modules
+go list -m all
+
+### Show Module Information
+go list -m <module-name>
+
+## Elixir (Mix)
+
+### List Installed Dependencies
+mix deps
+
+### Show Dependency Information
+mix deps.info <dependency-name>
+
+## .NET (NuGet)
+
+### List Installed Packages
+dotnet list package
+
+### Search for a Package
+dotnet nuget search <package-name>
+
+### Show Package Information
+dotnet nuget info <package-name>
