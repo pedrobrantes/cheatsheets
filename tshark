@@ -1,7 +1,7 @@
-# TSHARK
+# TSHARK & WIRESHARK UTILS
 Nixpkgs: wireshark
 Source: https://www.wireshark.org
-Description: Terminal-based network protocol analyzer (CLI version of Wireshark)
+Description: Terminal-based network protocol analyzer suite
 Version: 4.6.4
 
 ## Commands
@@ -10,43 +10,52 @@ Version: 4.6.4
 - tshark -D: list available network interfaces
 - tshark -i [interface]: capture packets on a specific interface
 - tshark -r [file].pcap: read packets from a pcap file
+- capinfos [file].pcap: print detailed statistics and info about a capture file
+- captype [file].pcap: print the file format type of a capture file
 
 ### Essentials
 - tshark -f "tcp port 80": apply a capture filter (BPF syntax) before capturing
-- tshark -Y "http.request": apply a display filter (Wireshark syntax) during or after capture
-- tshark -w [file].pcap: write captured packets to a file
+- tshark -Y "http.request": apply a display filter (Wireshark syntax)
+- dumpcap -i [interface] -w [file].pcap: high-performance raw packet capture
+- editcap -d [input].pcap [output].pcap: remove duplicate packets from a file
+- mergecap -w [output].pcap [file1].pcap [file2].pcap: merge multiple files into one
 
 ### Intermediaries
-- tshark -T fields -e frame.time -e ip.src -e ip.dst: extract and display specific fields
-- tshark -n: disable network object name resolution (faster, prevents DNS traffic)
-- tshark -z io,phs: display protocol hierarchy statistics
+- tshark -T fields -e frame.time -e ip.src -e ip.dst: extract specific packet fields
+- reordercap [input].pcap [output].pcap: reorder packets by timestamp
+- text2pcap [text_file] [pcap_file]: convert an ASCII hex dump to a pcap file
+- dftest "http.request": test and verify a Wireshark display filter syntax
+- mmdbresolve -f [db_file] -i [ip_addr]: resolve IP addresses using a MaxMind database
 
 ### Advanceds
-- tshark -i [interface] -b duration:3600 -w [filename]: capture using a ring buffer (new file every hour)
-- tshark -r [file].pcap -2 -R "tcp.analysis.retransmission": two-pass analysis for complex session filters
+- rawshark -r [file].pcap: analyze raw pcap data from a pipe or file
+- sharkd: run the Wireshark engine as a daemon for remote RPC analysis
+- editcap -c 1000 [input].pcap [output_prefix].pcap: split a large file into smaller 1000-packet chunks
+- tshark -z io,phs: display protocol hierarchy statistics
 
 ### Uncommons
-- tshark -G protocols: dump the internal protocol database
-- tshark -D -L: list link-layer types for a specific interface
+- randpkt -c 10 -t dns [file].pcap: generate a pcap file with random DNS packets
+- idl2wrs [file].idl: generate a Wireshark dissector from a CORBA IDL file
 
 ## Tips
-- use -n to avoid slow DNS lookups during live captures
-- capture filters (-f) are more efficient for high-volume traffic, while display filters (-Y) are more flexible for analysis
-- pipes work well: tshark -r file.pcap -T json | jq
+- use -n in tshark to avoid slow DNS lookups during live captures
+- combine tools: tshark -r file.pcap -T json | jq
+- Android workflow: use PcapDroid to capture traffic without root (via VPN service), save as .pcap, then analyze in Termux/PRoot using tshark/capinfos
+- Android PcapDroid Streaming: use 'UDP Streaming' in PcapDroid and capture in Termux with 'tshark -i [port]'
 
 ## Disclaimers
-- capturing network traffic usually requires administrative privileges (sudo or root)
-- respect privacy laws and organizational policies regarding network monitoring
+- direct interface capture requires root/sudo; on Android, root is required for tshark -i
+- respect privacy and local regulations when monitoring network traffic
 
 ## Alternatives
-- tcpdump: the classic, lower-level packet sniffer
-- termshark: a TUI (Terminal User Interface) wrapper for tshark that feels like Wireshark
+- tcpdump: lower-level, classic packet sniffer
+- termshark: TUI wrapper for tshark
 
 ---
-# TSHARK (PT)
+# TSHARK E UTILITÁRIOS WIRESHARK (PT)
 Nixpkgs: wireshark
 Source: https://www.wireshark.org
-Descrição: Analisador de protocolos de rede via linha de comando (versão CLI do Wireshark)
+Descrição: Suíte de análise de protocolos de rede via terminal
 Versão: 4.6.4
 
 ## Comandos
@@ -55,37 +64,46 @@ Versão: 4.6.4
 - tshark -D: lista as interfaces de rede disponíveis
 - tshark -i [interface]: captura pacotes em uma interface específica
 - tshark -r [arquivo].pcap: lê pacotes de um arquivo pcap
+- capinfos [arquivo].pcap: exibe estatísticas detalhadas sobre um arquivo de captura
+- captype [arquivo].pcap: exibe o tipo de formato do arquivo de captura
 
 ### Essenciais
-- tshark -f "tcp port 80": aplica um filtro de captura (sintaxe BPF) antes de iniciar
+- tshark -f "tcp port 80": aplica um filtro de captura (sintaxe BPF)
 - tshark -Y "http.request": aplica um filtro de exibição (sintaxe Wireshark)
-- tshark -w [arquivo].pcap: escreve os pacotes capturados em um arquivo
+- dumpcap -i [interface] -w [arquivo].pcap: captura bruta de alta performance
+- editcap -d [entrada].pcap [saida].pcap: remove pacotes duplicados de um arquivo
+- mergecap -w [saida].pcap [arq1].pcap [arq2].pcap: mescla vários arquivos em um só
 
 ### Intermediários
-- tshark -T fields -e frame.time -e ip.src -e ip.dst: extrai e exibe campos específicos
-- tshark -n: desativa a resolução de nomes (mais rápido, evita tráfego DNS)
-- tshark -z io,phs: exibe estatísticas da hierarquia de protocolos
+- tshark -T fields -e frame.time -e ip.src -e ip.dst: extrai campos específicos
+- reordercap [entrada].pcap [saida].pcap: reordena pacotes pelo timestamp
+- text2pcap [texto] [pcap]: converte um hex dump ASCII em um arquivo pcap
+- dftest "http.request": testa e valida a sintaxe de um filtro de exibição
+- mmdbresolve -f [banco] -i [ip]: resolve IPs usando uma base MaxMind
 
 ### Avançados
-- tshark -i [interface] -b duration:3600 -w [arquivo]: captura usando um buffer circular (novo arquivo a cada hora)
-- tshark -r [arquivo].pcap -2 -R "tcp.analysis.retransmission": análise de dois passos para filtros de sessão complexos
+- rawshark -r [arquivo].pcap: analisa dados pcap brutos via pipe ou arquivo
+- sharkd: roda o motor do Wireshark como daemon para análise remota via RPC
+- editcap -c 1000 [entrada].pcap [prefixo].pcap: divide um arquivo grande em partes de 1000 pacotes
+- tshark -z io,phs: exibe estatísticas da hierarquia de protocolos
 
 ### Incomuns
-- tshark -G protocols: exporta a base de dados interna de protocolos
-- tshark -D -L: lista os tipos de camada de enlace para uma interface específica
+- randpkt -c 10 -t dns [arquivo].pcap: gera um pcap com pacotes DNS aleatórios
+- idl2wrs [arquivo].idl: gera um dissector Wireshark a partir de um arquivo CORBA IDL
 
 ## Dicas
-- use -n para evitar buscas DNS lentas durante capturas em tempo real
-- filtros de captura (-f) são mais eficientes para alto volume, filtros de exibição (-Y) são mais flexíveis para análise
-- no Android (Termux/PRoot), o acesso direto às interfaces requer root; sem root, o tshark é útil principalmente para analisar arquivos pcap gerados por outros meios
+- use -n no tshark para evitar buscas DNS lentas em capturas ao vivo
+- fluxo Android sem Root: use o PcapDroid (via serviço VPN) para capturar o tráfego, salve como .pcap e analise no Termux/PRoot com tshark/capinfos
+- streaming no Android: ative 'UDP Streaming' no PcapDroid e receba no Termux via 'tshark -i [porta]'
+- combine ferramentas: tshark -r arq.pcap -T json | jq
 
 ## Avisos
-- capturar tráfego de rede geralmente requer privilégios administrativos (sudo ou root)
-- respeite as leis de privacidade e as políticas organizacionais ao monitorar redes
+- captura direta em interfaces exige root/sudo; no Android, root é necessário para tshark -i
+- respeite a privacidade e legislações locais ao monitorar redes
 
 ## Alternativas
-- tcpdump: o sniffer de pacotes clássico e de nível mais baixo
-- termshark: uma interface TUI que traz a experiência do Wireshark para o terminal
+- tcpdump: sniffer clássico de nível mais baixo
+- termshark: interface TUI para o tshark
 
 ---
 This cheatsheet was generated by an AI agent using the skill defined in .agents/skills/cheatsheet-manager.
